@@ -77,7 +77,7 @@ public class AskMeWatch {
 	List<String> ListOptionsStep5a_QN2 = Arrays.asList("Round", "Rectangular",
 			"Square");
 
-	String questionStep6a_QN2 = "Which material do you prefer for the strap ? (QCM)";
+	String questionStep6a_QN2 = "Which material do you prefer for the strap ? (MCQ)";
 	List<String> ListOptionsStep6a_QN2 = Arrays.asList("Metal", "Fabric",
 			"Leather", "Rubber");
 
@@ -143,7 +143,8 @@ public class AskMeWatch {
 		// choose a watch novice option and do steps without connected option
 		// testWatchNovice();
 		// testWatchEnthusisast();
-		testBackCaseWatchEnthusisast_connectedOption();
+		//testBackCaseWatchEnthusisast_connectedOption();
+		testBackCaseWatchEnthusisast_greatComplicationOption();
 
 	}
 
@@ -295,32 +296,111 @@ public class AskMeWatch {
 		// come back to step 4
 		backToPreviousStep(currentQuestion);
 
-		// // step 4-choose kind of movement -choose connection
-		// currentQuestion = DoSteps(questionStep4_QN2, ListOptionsStep4_QN2,
-		// 3);
-		// // click next button
-		// clickButtonCss("[id='next-ans']");
-		//
-		// // step 5-the shape
-		// currentQuestion = DoSteps(questionStep5a_QN2, ListOptionsStep5a_QN2,
-		// 0);
-		// // click next button
-		// clickButtonCss("[id='next-ans']");
-		//
-		// // step 6-the material for strap
-		// currentQuestion = DoSteps(questionStep6a_QN2, ListOptionsStep6a_QN2,
-		// 0);
-		// // click next button
-		// clickButtonCss("[id='next-ans']");
-		//
-		// // step 7-choose price filter
-		// int getResult = getResult();
-		// // click next button
-		// clickButtonCss("[id='next-ans']");
-		//
-		// // Compare results showed and result after filter
-		// Assert.assertEquals(getResult + 1,
-		// openAndGetTotalProductOfListWatchAvisor());
+		// step 4-choose kind of movement -choose connection
+		currentQuestion = DoSteps(questionStep4_QN2, ListOptionsStep4_QN2, 3);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 5-the shape
+		currentQuestion = DoSteps(questionStep5a_QN2, ListOptionsStep5a_QN2, 0);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 6-the material for strap
+		currentQuestion = DoSteps(questionStep6a_QN2, ListOptionsStep6a_QN2, 0);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 7-choose price filter
+		int getResult = getResult();
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// Compare results showed and result after filter
+		Assert.assertEquals(getResult + 1,
+				openAndGetTotalProductOfListWatchAvisor());
+	}
+
+	@Test
+	// choose great complication option
+	public void testBackCaseWatchEnthusisast_greatComplicationOption()
+			throws InterruptedException {
+		String currentQuestion;
+		// step 1-choose enthusiast option
+		currentQuestion = DoSteps(questionStep1, ListOptionsStep1, 1);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 2-choose woman option
+		currentQuestion = DoSteps(questionStep2, ListOptionsStep2, 1);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 3-choose size
+		currentQuestion = DoSteps(questionStep3_QN2, ListOptionsStep3a_QN2, 1);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 4-choose kind of movement -choose connection
+		currentQuestion = DoSteps(questionStep4_QN2, ListOptionsStep4_QN2, 1);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 5-choose movement essential
+		currentQuestion = DoSteps(questionStep5_QN2, ListOptionsStep5_QN2, 1);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 6-choose fancy
+		currentQuestion = DoSteps(questionStep6_QN2, ListOptionsStep6_QN2, 1);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 7-choose kind of function-choose great complication option
+		currentQuestion = DoSteps(questionStep7_QN2, ListOptionsStep7_QN2, 5);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 8-choose complication attract
+		currentQuestion = DoSteps(questionStep8a_QN2, ListOptionsStep8a_QN2, 1);
+
+		// come back to step 7
+		backToPreviousStep(currentQuestion);
+
+		// step 7-choose kind of function-choose great compalication option
+		currentQuestion = DoSteps(questionStep7_QN2, ListOptionsStep7_QN2, 5);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 8-choose complication attract
+		currentQuestion = DoSteps(questionStep8a_QN2, ListOptionsStep8a_QN2, 1);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 9-choose kind of watch
+		currentQuestion = DoSteps(questionStep8_QN2, ListOptionsStep8_QN2, 1);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 10-choose price filter
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 11-choose material
+		currentQuestion = DoSteps(questionStep10_QN2, ListOptionsStep10_QN2, 1);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 12-choose import criteria 
+		currentQuestion = DoSteps(questionStep11_QN2, ListOptionsStep11_QN2, 1);
+		
+		int getResult = getResult();
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// Compare results showed and result after filter
+		Assert.assertEquals(getResult + 1,
+				openAndGetTotalProductOfListWatchAvisor());
 	}
 
 	public String DoSteps(String titleQuestion, List listOptions,
@@ -331,7 +411,7 @@ public class AskMeWatch {
 		// get question
 		String getQuestion = findCss(".ans-number.show .question-title")
 				.getText().trim();
-	
+
 		// verify question
 		Assert.assertEquals(titleQuestion.toLowerCase(),
 				getQuestion.toLowerCase());
@@ -362,9 +442,9 @@ public class AskMeWatch {
 			throws InterruptedException {
 		Thread.sleep(3000);
 		int i = Integer.valueOf(currentQuestion);
-		WebElement questionbt = findCss(".process-ques li:nth-child(" + String.valueOf(i - 1)
-				+ ") a");
-		scrollElementIntroView(questionbt, -100);		
+		WebElement questionbt = findCss(".process-ques li:nth-child("
+				+ String.valueOf(i - 1) + ") a");
+		scrollElementIntroView(questionbt, -100);
 		questionbt.click();
 
 	}
