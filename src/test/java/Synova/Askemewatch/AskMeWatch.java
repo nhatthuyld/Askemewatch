@@ -93,7 +93,7 @@ public class AskMeWatch {
 	List<String> ListOptionsStep7_QN2 = Arrays.asList("2/3 hands",
 			"Chronograph", "GMT", "Diver", "Moonphase", "Great Complication");
 	// if choose great complication do 8a and continue with 8
-	String questionStep8a_QN2 = "Which complication attracts you the most ? ";
+	String questionStep8a_QN2 = "OK, you’re a connoisseur ! :) Which complication attracts you the most ?";
 	List<String> ListOptionsStep8a_QN2 = Arrays.asList(
 			"Annual or perpetual calendar", "Chime or repeater", "Tourbillon",
 			"Equation of time", "Rattrapante", "Dead second");
@@ -141,10 +141,10 @@ public class AskMeWatch {
 		clickButtonCss(".btn-link");
 		Thread.sleep(1000);
 		// choose a watch novice option and do steps without connected option
-		// testWatchNovice();
+		 testWatchNovice();
 		// testWatchEnthusisast();
-		//testBackCaseWatchEnthusisast_connectedOption();
-		testBackCaseWatchEnthusisast_greatComplicationOption();
+		// testBackCaseWatchEnthusisast_connectedOption();
+		//testBackCaseWatchEnthusisast_greatComplicationOption();
 
 	}
 
@@ -157,7 +157,7 @@ public class AskMeWatch {
 		clickButtonCss("[id='next-ans']");
 
 		// step 2-choose man option
-		currentQuestion = DoSteps(questionStep2, ListOptionsStep2, 1);
+		currentQuestion = DoSteps(questionStep2, ListOptionsStep2, 0);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
@@ -177,7 +177,7 @@ public class AskMeWatch {
 		clickButtonCss("[id='next-ans']");
 
 		// step 6-choose blue option
-		currentQuestion = DoSteps(questionStep6_QN1, ListOptionsStep6_QN1, 1);
+		currentQuestion = DoSteps(questionStep6_QN1, ListOptionsStep6_QN1, 2);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
@@ -191,7 +191,7 @@ public class AskMeWatch {
 		clickButtonCss("[id='next-ans']");
 
 		// step 9-choose Social media popularity option
-		currentQuestion = DoSteps(questionStep9_QN1, ListOptionsStep9_QN1, 1);
+		currentQuestion = DoSteps(questionStep9_QN1, ListOptionsStep9_QN1, 0);
 
 		int getResult = getResult();
 		// click next button
@@ -332,27 +332,27 @@ public class AskMeWatch {
 		clickButtonCss("[id='next-ans']");
 
 		// step 2-choose woman option
-		currentQuestion = DoSteps(questionStep2, ListOptionsStep2, 1);
+		currentQuestion = DoSteps(questionStep2, ListOptionsStep2, 0);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
 		// step 3-choose size
-		currentQuestion = DoSteps(questionStep3_QN2, ListOptionsStep3a_QN2, 1);
+		currentQuestion = DoSteps(questionStep3_QN2, ListOptionsStep3a_QN2, 3);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
-		// step 4-choose kind of movement -choose connection
-		currentQuestion = DoSteps(questionStep4_QN2, ListOptionsStep4_QN2, 1);
+		// step 4-choose kind of movement
+		currentQuestion = DoSteps(questionStep4_QN2, ListOptionsStep4_QN2, 0);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
 		// step 5-choose movement essential
-		currentQuestion = DoSteps(questionStep5_QN2, ListOptionsStep5_QN2, 1);
+		currentQuestion = DoSteps(questionStep5_QN2, ListOptionsStep5_QN2, 0);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
-		// step 6-choose fancy
-		currentQuestion = DoSteps(questionStep6_QN2, ListOptionsStep6_QN2, 1);
+		// step 6-choose color fancy
+		currentQuestion = DoSteps(questionStep6_QN2, ListOptionsStep6_QN2, 2);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
@@ -382,25 +382,39 @@ public class AskMeWatch {
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
-		// step 10-choose price filter
-		// click next button
-		clickButtonCss("[id='next-ans']");
+		// // step 10-choose price filter
+		// choosePriceFilter();
+		//
+		// // step 11-choose material
+		// currentQuestion = DoSteps(questionStep10_QN2, ListOptionsStep10_QN2,
+		// 1);
+		// // click next button
+		// clickButtonCss("[id='next-ans']");
+		//
+		// // step 12-choose import criteria
+		// currentQuestion = DoSteps(questionStep11_QN2, ListOptionsStep11_QN2,
+		// 1);
+		//
+		// int getResult = getResult();
+		// // click next button
+		// clickButtonCss("[id='next-ans']");
+		//
+		// // Compare results showed and result after filter
+		// Assert.assertEquals(getResult + 1,
+		// openAndGetTotalProductOfListWatchAvisor());
+	}
 
-		// step 11-choose material
-		currentQuestion = DoSteps(questionStep10_QN2, ListOptionsStep10_QN2, 1);
-		// click next button
-		clickButtonCss("[id='next-ans']");
+	public void choosePriceFilter() throws InterruptedException {
+		Thread.sleep(2000);
+		// get question
+		String getQuestion = findCss(".ans-number.show .question-title")
+				.getText().trim();
 
-		// step 12-choose import criteria 
-		currentQuestion = DoSteps(questionStep11_QN2, ListOptionsStep11_QN2, 1);
-		
-		int getResult = getResult();
-		// click next button
+		// verify question
+		Assert.assertEquals(
+				"How much do you want to spend in this watch ?".toLowerCase(),
+				getQuestion.toLowerCase());
 		clickButtonCss("[id='next-ans']");
-
-		// Compare results showed and result after filter
-		Assert.assertEquals(getResult + 1,
-				openAndGetTotalProductOfListWatchAvisor());
 	}
 
 	public String DoSteps(String titleQuestion, List listOptions,
