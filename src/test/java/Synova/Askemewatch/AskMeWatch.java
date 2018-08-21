@@ -140,11 +140,22 @@ public class AskMeWatch {
 		Thread.sleep(4000);
 		clickButtonCss(".btn-link");
 		Thread.sleep(1000);
-		// choose a watch novice option and do steps without connected option
-		 testWatchNovice();
-		// testWatchEnthusisast();
-		// testBackCaseWatchEnthusisast_connectedOption();
-		//testBackCaseWatchEnthusisast_greatComplicationOption();
+		testWatchNovice();
+
+		// click watch advisor tab
+		driver.get("http://chronollection.ss-sandbox.com/watch/advisor");
+		Thread.sleep(4000);
+		testWatchEnthusisast();
+
+		// click watch advisor tab
+		driver.get("http://chronollection.ss-sandbox.com/watch/advisor");
+		Thread.sleep(4000);
+		testBackCaseWatchEnthusisast_connectedOption();
+
+		// click watch advisor tab
+		driver.get("http://chronollection.ss-sandbox.com/watch/advisor");
+		Thread.sleep(4000);
+		testBackCaseWatchEnthusisast_greatComplicationOption();
 
 	}
 
@@ -162,27 +173,27 @@ public class AskMeWatch {
 		clickButtonCss("[id='next-ans']");
 
 		// step 3-choose merchanical option
-		currentQuestion = DoSteps(questionStep3_QN1, ListOptionsStep3_QN1, 1);
+		currentQuestion = DoSteps(questionStep3_QN1, ListOptionsStep3_QN1, 0);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
 		// step 4-choose simple option
-		currentQuestion = DoSteps(questionStep4_QN1, ListOptionsStep4_QN1, 1);
+		currentQuestion = DoSteps(questionStep4_QN1, ListOptionsStep4_QN1, 0);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
 		// step 5-choose sporty option
-		currentQuestion = DoSteps(questionStep5_QN1, ListOptionsStep5_QN1, 1);
+		currentQuestion = DoSteps(questionStep5_QN1, ListOptionsStep5_QN1, 0);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
-		// step 6-choose blue option
-		currentQuestion = DoSteps(questionStep6_QN1, ListOptionsStep6_QN1, 2);
+		// step 6-choose option
+		currentQuestion = DoSteps(questionStep6_QN1, ListOptionsStep6_QN1, 1);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
 		// step 7-choose METAL option
-		currentQuestion = DoSteps(questionStep7_QN1, ListOptionsStep7_QN1, 1);
+		currentQuestion = DoSteps(questionStep7_QN1, ListOptionsStep7_QN1, 0);
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
@@ -382,26 +393,24 @@ public class AskMeWatch {
 		// click next button
 		clickButtonCss("[id='next-ans']");
 
-		// // step 10-choose price filter
-		// choosePriceFilter();
-		//
-		// // step 11-choose material
-		// currentQuestion = DoSteps(questionStep10_QN2, ListOptionsStep10_QN2,
-		// 1);
-		// // click next button
-		// clickButtonCss("[id='next-ans']");
-		//
-		// // step 12-choose import criteria
-		// currentQuestion = DoSteps(questionStep11_QN2, ListOptionsStep11_QN2,
-		// 1);
-		//
-		// int getResult = getResult();
-		// // click next button
-		// clickButtonCss("[id='next-ans']");
-		//
-		// // Compare results showed and result after filter
-		// Assert.assertEquals(getResult + 1,
-		// openAndGetTotalProductOfListWatchAvisor());
+		// step 10-choose price filter
+		choosePriceFilter();
+
+		// step 11-choose material
+		currentQuestion = DoSteps(questionStep10_QN2, ListOptionsStep10_QN2, 1);
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// step 12-choose import criteria
+		currentQuestion = DoSteps(questionStep11_QN2, ListOptionsStep11_QN2, 1);
+
+		int getResult = getResult();
+		// click next button
+		clickButtonCss("[id='next-ans']");
+
+		// Compare results showed and result after filter
+		Assert.assertEquals(getResult + 1,
+				openAndGetTotalProductOfListWatchAvisor());
 	}
 
 	public void choosePriceFilter() throws InterruptedException {
@@ -501,47 +510,6 @@ public class AskMeWatch {
 		int totalProduct = listProducts.size();
 		return totalProduct;
 	}
-
-	// @Test
-	// public void testwatchAdvisor() throws InterruptedException {
-	// // click watch advisor tab
-	// clickButtonXpath("//*[@id='myNavbar']/ul[1]/li[1]/a");
-	// Thread.sleep(4000);
-	// // step 1
-	// clickButtonXpath("//div[@value='1']");
-	// clickButtonCss("#next-ans");
-	// // step 2
-	// clickButtonXpath(".//*[@id='quizarea']/div/div/div[2]/div/div[2]/div/div/div[1]/div");
-	// clickButtonCss("#next-ans");
-	// // step 3
-	// clickButtonXpath(".//*[@id='quizarea']/div/div/div[2]/div/div[3]/div/div/div[3]/div");
-	// clickButtonCss("#next-ans");
-	// // step 4
-	// clickButtonXpath(".//*[@id='quizarea']/div/div/div[2]/div/div[4]/div/div/div[1]/div");
-	// clickButtonCss("#next-ans");
-	// // step 5
-	// clickButtonXpath(".//*[@id='quizarea']/div/div/div[2]/div/div[5]/div/div/div[3]/div");
-	// clickButtonCss("#next-ans");
-	// // step 5
-	// clickButtonCss("#next-ans");
-	// // list results
-	//
-	// List<WebElement> listWatchAdvisor =
-	// driver.findElements(By.cssSelector(".watch-result div"));
-	// int r = listWatchAdvisor.size();
-	// if (r <= 0) {
-	// System.out.println("No results for watch advisor");
-	// return;
-	// } else {
-	// // click first element
-	// listWatchAdvisor.get(0).click();
-	// }
-	// // get url
-	// Thread.sleep(2000);
-	// // check URL consist of 'review-specifications-quote'
-	// checkConsistOFQuoteString();
-	//
-	// }
 
 	@Test
 	public void testPriceFinder() throws InterruptedException {
