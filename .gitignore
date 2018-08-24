@@ -24,3 +24,7 @@ hs_err_pid*
 target/
 .settings/
 .classpath
+.classpath
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.jdt.core.prefs
